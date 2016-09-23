@@ -166,7 +166,7 @@ button{
 }
 input:hover, textarea:hover, select:hover{
   background-color : #FAFAE6;
-  cursor : pointer;
+  cursor : text;
 }
 
 /*  Le texte des messages d'erreur est de couleur rose sur fond ocre et de 
