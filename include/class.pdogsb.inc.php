@@ -61,6 +61,14 @@ class PdoGsb{
 		return $ligne;
 	}
 
+	public function getInfosComptable($login, $mdp){
+		$req = "select Comptable.id as id, Comptable.nom as nom, Comptable.prenom as prenom from Comptable
+        where Comptable.login='$login' and Comptable.mdp='$mdp'";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetch();
+        return $ligne;
+	}
+
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
