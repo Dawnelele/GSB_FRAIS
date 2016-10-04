@@ -20,7 +20,7 @@ function estConnecte(){
  * @param $nom
  * @param $prenom
  */
-function connecter($id,$nom,$prenom, $isComptable = false){
+function connecter($id,$nom,$prenom, $isComptable = 0){
 	$_SESSION['idVisiteur']= $id; 
 	$_SESSION['nom']= $nom;
 	$_SESSION['prenom']= $prenom;

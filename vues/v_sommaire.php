@@ -9,9 +9,14 @@
       </div>  
         <ul id="menuList">
 			<li >
-				  <?php echo ($_SESSION['isComptable'] == true) ? "Comptable :" : "Visiteur :" ?><br>
+				  <?php echo ($_SESSION['isComptable'] == 1) ? "Comptable :" : "Visiteur :" ?><br>
 				<?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
 			</li>
+
+            <?php echo ($_SESSION['isComptable'] == 1) ? "<li class=\"smenu\">
+              <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\">Afficher la liste des frais</a>
+           </li>" : ""?>
+
            <li class="smenu">
               <a href="index.php?uc=gererFrais&action=saisirFrais" title="Saisie fiche de frais ">Saisie fiche de frais</a>
            </li>
@@ -22,9 +27,7 @@
               <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
            </li>
 
-           <?php echo ($_SESSION['isComptable'] == true) ? "<li class=\"smenu\">
-              <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\">Afficher la liste des frais</a>
-           </li>" : ""?>
+
          </ul>
         
     </div>
