@@ -69,6 +69,20 @@ class PdoGsb{
         return $ligne;
 	}
 
+    public function getListeFrais(){
+        $req = "select * from LigneFraisForfait, LigneFraisHorsForfait";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetchAll();
+        return $ligne;
+    }
+
+    public function getLesVisiteurs(){
+        $req = "select * from Visiteur";
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetchAll();
+        return $ligne;
+    }
+
 /**
  * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
  * concernées par les deux arguments
