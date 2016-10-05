@@ -10,7 +10,6 @@ switch($action){
 	case 'consulterFrais':{
 		if($isComptable){
 			$var = $pdo->getLesInfosFicheFrais($_REQUEST['idVisiteur'], $_REQUEST['idMois']);
-			var_dump($var);
 		} else {
 			ajouterErreur("Vous n'avez pas accès à cette page");
 		}
