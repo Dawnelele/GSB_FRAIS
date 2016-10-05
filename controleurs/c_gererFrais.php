@@ -7,6 +7,14 @@ $numAnnee =substr( $mois,0,4);
 $numMois =substr( $mois,4,2);
 $action = $_REQUEST['action'];
 switch($action){
+	case 'consulterFrais':{
+		if($isComptable){
+			$var = $pdo->getLesInfosFicheFrais($_REQUEST['idVisiteur'], $_REQUEST['idMois']);
+			var_dump($var);
+		} else {
+			ajouterErreur("Vous n'avez pas accès à cette page");
+		}
+	}
     case 'listeFrais':{
         if($isComptable) {
             $listeVisiteurs = $pdo->getLesVisiteurs();

@@ -17,9 +17,9 @@
 
 class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
-      	private static $bdd='dbname=gsbV2';   		
+      	private static $bdd='dbname=gsbV2';
       	private static $user='root' ;    		
-      	private static $mdp='' ;	
+      	private static $mdp='root' ;	
 		private static $monPdo;
 		private static $monPdoGsb=null;
 /**
@@ -303,6 +303,7 @@ class PdoGsb{
 			fichefrais.montantValide as montantValide, Etat.libelle as libEtat from fichefrais inner join Etat on fichefrais.idEtat = Etat.id 
 			where fichefrais.idVisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		$res = PdoGsb::$monPdo->query($req);
+		var_dump($req);
 		$laLigne = $res->fetch();
 		return $laLigne;
 	}
