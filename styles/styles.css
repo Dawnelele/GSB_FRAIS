@@ -165,10 +165,13 @@ button{
   vertical-align:middle;
 }
 input:hover, textarea:hover, select:hover{
-  background-color : #FAFAE6;
-  cursor : text;
+  /*background-color : #FAFAE6;
+  cursor : text;*/
 }
 
+.inputNotEditable {
+  cursor: not-allowed;
+}
 /*  Le texte des messages d'erreur est de couleur rose sur fond ocre et de 
 taille de caractères légèrement supérieure à la normale */
 .erreur{ 
@@ -201,7 +204,7 @@ taille de caractères légèrement supérieure à la normale */
 /* Style pour les liens de la page principale */
 #contenu a {
    font-size : 1.1em;
-   color:gray;
+   /*color:gray;*/
    text-decoration:none;
 }
 /*#contenu a:hover {
