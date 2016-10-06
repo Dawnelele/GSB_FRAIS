@@ -204,11 +204,11 @@ taille de caractères légèrement supérieure à la normale */
    color:gray;
    text-decoration:none;
 }
-#contenu a:hover {
+/*#contenu a:hover {
    text-decoration:underline;
    background-color : #D9BB7A;
    font-size : 1em;
-}
+}*/
 
 /* Style pour les parties importantes de la page principale */
 #contenu strong {
