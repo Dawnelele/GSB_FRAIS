@@ -1,8 +1,3 @@
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/chosen.jquery.min.js"></script>
-<script src="js/chosen.proto.min.js"></script>
-
-
 <?php
 
 echo '<div class="hidden alert alert-danger" id="danger-alert">

@@ -4,6 +4,9 @@
   <head>
     <title>Intranet du Laboratoire Galaxy-Swiss Bourdin</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/chosen.jquery.min.js"></script>
+    <script src="./js/chosen.proto.min.js"></script>
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
     <link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="./styles/chosen.min.css" rel="stylesheet" type="text/css" />

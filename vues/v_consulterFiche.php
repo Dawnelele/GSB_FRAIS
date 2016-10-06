@@ -1,7 +1,3 @@
-<script
-  src="http://code.jquery.com/jquery-3.1.1.min.js">
-</script>
-
 <div id="contenu">
 	<form method="POST" action="index.php?uc=gererFrais&action=validerFiche">
 	      <div class="corpsForm">
