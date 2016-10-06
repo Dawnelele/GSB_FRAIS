@@ -1,6 +1,7 @@
-<script
-  src="http://code.jquery.com/jquery-3.1.1.min.js">
-</script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
+<script src="js/chosen.proto.min.js"></script>
+
 
 <?php
 
@@ -26,8 +27,8 @@ $listeMois = array(
                 date('Y') . "12" => "Décembre",
                 );
 
-echo '<div id="conteneurSelecteurs" class="row">';
-echo '<select class="selecteurVisiteur">';
+echo '<div id="conteneurSelecteurs" >';
+echo '<select class="selecteurVisiteur chosen-select">';
 foreach($visiteurs as $visiteur){
     echo '<option value="'. $visiteur['id'] .'">'. $visiteur['nom'] . ' ' . $visiteur['prenom'] . '</option>';
 }
@@ -40,18 +41,21 @@ foreach($listeMois as $idMois => $nomMois){
 echo '</select></div>';
 
 
-//TODO SEND CORRECT VALUES TO THE METHOD
-if(empty($pdo->getLesFraisForfait('a131', '201610'))){
-    ajouterErreur("Cette fiche n'existe pas");
-    echo '<script>';
-    echo '$("#danger-alert").removeClass("hidden");
-          $("#danger-alert").on("click", function() {
-            $("#danger-alert").fadeTo(1, 500).slideUp(500, function(){
-                $("#danger-alert").slideUp(500);
-              });
-          });';
-            
-    echo '</script>';
+if(isset($_REQUEST['requestedIdVisiteur']) && isset($_REQUEST['requestedMonth'])) {
+    if(empty($pdo->getLesFraisForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']))){
+        ajouterErreur("Cette fiche n'existe pas");
+        echo '<script>';
+        echo '$("#danger-alert").removeClass("hidden");
+              $("#danger-alert").on("click", function() {
+                $("#danger-alert").fadeTo(1, 500).slideUp(500, function(){
+                    $("#danger-alert").slideUp(500);
+                  });
+              });';
+                
+        echo '</script>';
+    } else {
+        include("v_consulterFiche.php");
+    }
 }
 ?>
 
@@ -59,11 +63,22 @@ if(empty($pdo->getLesFraisForfait('a131', '201610'))){
 $(".selecteurVisiteur").on("change", function() {
     $('.selecteurMois').removeClass("hidden");
 });
+$('.selecteurMois').on("change", function() {
+    var requestedIdVisiteur = $(".selecteurVisiteur :selected").val();
+    var requestedMonth = $(".selecteurMois :selected").val();
+    $.ajax({
+        url: 'index.php?uc=gererFrais&action=consulterFrais',
+        type: 'get',
+        data: {requestedIdVisiteur: requestedIdVisiteur,
+            requestedMonth: requestedMonth,},
+        success: function() {
+            window.location.href = "index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur="+requestedIdVisiteur+"&requestedMonth="+requestedMonth;
+        },
+        error: function() {
+            window.location.href = "index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur="+requestedIdVisiteur+"&requestedMonth="+requestedMonth;
+        }
+    })
+})
 </script>
 
-<?php
-
-if($_REQUEST['ficheSelectionnee']){
-
-}
 

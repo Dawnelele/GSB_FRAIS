@@ -7,29 +7,37 @@ $numAnnee =substr( $mois,0,4);
 $numMois =substr( $mois,4,2);
 $action = $_REQUEST['action'];
 switch($action){
+	case 'validerFiche':{
+		//TODO
+		echo 'validé';
+		break;
+	}
 	case 'consulterFrais':{
 		if($isComptable){
-			$var = $pdo->getLesInfosFicheFrais($_REQUEST['idVisiteur'], $_REQUEST['idMois']);
+			$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
+			$lesFraisForfait= $pdo->getLesFraisForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
 		} else {
 			ajouterErreur("Vous n'avez pas accès à cette page");
 		}
+		include("vues/v_consulterFiche.php");
+		break;
 	}
     case 'listeFrais':{
         if($isComptable) {
             $listeVisiteurs = $pdo->getLesVisiteurs();
             $listeMois = array(
-                Date('Y') . "01" => "Janvier",
-                Date('Y') . "02" => "Février",
-                Date('Y') . "03" => "Mars",
-                Date('Y') . "04" => "Avril",
-                Date('Y') . "05" => "Mai",
-                Date('Y') . "06" => "Juin",
-                Date('Y') . "07" => "Juillet",
-                Date('Y') . "08" => "Août",
-                Date('Y') . "09" => "Septembre",
-                Date('Y') . "10" => "Octobre",
-                Date('Y') . "11" => "Novembre",
-                Date('Y') . "12" => "Décembre",
+                date('Y') . "01" => "Janvier",
+                date('Y') . "02" => "Février",
+                date('Y') . "03" => "Mars",
+                date('Y') . "04" => "Avril",
+                date('Y') . "05" => "Mai",
+                date('Y') . "06" => "Juin",
+                date('Y') . "07" => "Juillet",
+                date('Y') . "08" => "Août",
+                date('Y') . "09" => "Septembre",
+                date('Y') . "10" => "Octobre",
+                date('Y') . "11" => "Novembre",
+                date('Y') . "12" => "Décembre",
                 );
             include("vues/v_listeFrais.php");
         } else{
@@ -44,9 +52,16 @@ switch($action){
 		break;
 	}
 	case 'validerMajFraisForfait':{
-		$lesFrais = $_REQUEST['lesFrais'];
+		if(empty($_REQUEST['lesFrais'])) {
+			$lesFrais = $_SESSION['lesFraisToUpdate'];
+			$idVisiteurToUpdate = $_REQUEST['idVisiteurToUpdate'];
+			$moisToUpdate = $_REQUEST['moisToUpdate'];
+		} else {
+			$lesFrais = $_REQUEST['lesFrais'];
+		}
+
 		if(lesQteFraisValides($lesFrais)){
-	  	 	$pdo->majFraisForfait($idVisiteur,$mois,$lesFrais);
+	  	 	$pdo->majFraisForfait($idVisiteurToUpdate,$moisToUpdate,$lesFrais);
 		}
 		else{
 			ajouterErreur("Les valeurs des frais doivent être numériques");
@@ -73,9 +88,12 @@ switch($action){
 		break;
 	}
 }
-$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
-$lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
-include("vues/v_listeFraisForfait.php");
-include("vues/v_listeFraisHorsForfait.php");
+
+if($_REQUEST['action'] != "listeFrais" && $_REQUEST['action'] != "consulterFrais") {
+	$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
+	$lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
+	include("vues/v_listeFraisForfait.php");
+	include("vues/v_listeFraisHorsForfait.php");
+}
 
 ?>
