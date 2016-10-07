@@ -11,7 +11,7 @@ $action = $_REQUEST['action'];
 switch($action){
 	case 'validerFiche': {
 		$lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
-
+		break;
 	}
 	case 'modifierFiche': {
 		$lesFraisForfait= $pdo->getLesFraisForfait($_REQUEST['idVisiteurToUpdate'], $_REQUEST['moisToUpdate']);
