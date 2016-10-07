@@ -22,7 +22,7 @@
 
 
 	<?php if(empty($lesFraisHorsForfait)) {
-		echo "<div class='row' >Aucun frais hort forfait enregistré pour cette fiche</div>";
+		echo "<div class='row'>Aucun frais hort forfait enregistré pour cette fiche</div>";
 		exit;
 	} else {
 		include("vues/v_listeFraisHorsForfaitComptable.php");
