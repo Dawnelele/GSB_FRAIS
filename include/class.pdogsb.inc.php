@@ -40,7 +40,7 @@ class PdoGsb{
 
  * @return l'unique objet de la classe PdoGsb
  */
-	public  static function getPdoGsb(){
+	public static function getPdoGsb(){
 		if(PdoGsb::$monPdoGsb==null){
 			PdoGsb::$monPdoGsb= new PdoGsb();
 		}

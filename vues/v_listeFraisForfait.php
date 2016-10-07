@@ -1,12 +1,11 @@
 <div id="contenu">
-      <h2>Renseigner ma fiche de frais du mois <?php echo $numMois."-".$numAnnee ?></h2>
+      <h2>Fiche de frais du mois <?php echo $numMois."-".$numAnnee ?></h2>
          
-      <form method="POST" action="index.php?uc=gererFrais&action=validerMajFraisForfait<?php echo ($isComptable) ? "&idVisiteurToUpdate=". $_REQUEST['idVisiteurToUpdate'] ."&moisToUpdate=". $_REQUEST['moisToUpdate'] : "" ;?> ">
+      <form method="POST" action="index.php?uc=gererFrais&action=validerMajFraisForfait<?php echo ($isComptable) ? "&idVisiteurToUpdate=". $_REQUEST['idVisiteurToUpdate'] ."&moisToUpdate=". $_REQUEST['moisToUpdate']."&updated=1" : "" ;?> ">
       <div class="corpsForm">
           
           <fieldset>
-            <legend>Eléments forfaitisés
-            </legend>
+            <legend>Eléments forfaitisés</legend>
 			<?php
 				foreach ($lesFraisForfait as $unFrais)
 				{
@@ -21,20 +20,24 @@
 			
 			<?php
 				}
-			?>
-			
-			
-			
-			
+			?>	
            
           </fieldset>
       </div>
+
       <div class="piedForm">
-      <p>
-        <input id="ok" type="submit" value="Valider" size="20" />
-        <input id="annuler" type="reset" value="Effacer" size="20" />
-      </p> 
+	      <p>
+	        <input id="ok" type="submit" value="Valider" size="20" />
+	        <input id="annuler" type="reset" value="Effacer" size="20" />
+	      </p>
       </div>
         
       </form>
+</div>
+
+<?php
+if(isset($_REQUEST['idVisiteurToUpdate']) && isset($_REQUEST['moisToUpdate']) && isset($_REQUEST['updated']) && $_REQUEST['updated'] == 1){
+	echo "<script>window.location.href = 'index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur=". $_REQUEST['idVisiteurToUpdate'] ."&requestedMonth=". $_REQUEST['moisToUpdate'] ."';</script>";
+}
+?>
   
