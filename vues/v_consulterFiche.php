@@ -1,3 +1,8 @@
+<?php
+if(empty($lesFraisForfait)) {
+	echo "<script>window.location.href = 'index.php?uc=gererFrais&action=listeFrais&notFound=true';</script>";
+}?>
+
 <div class="form-group">
 	<fieldset>
 		<legend>Eléments forfaitisés</legend>
@@ -22,7 +27,7 @@
 
 
 	<?php if(empty($lesFraisHorsForfait)) {
-		echo "<div class='row' >Aucun frais hort forfait enregistré pour cette fiche</div>";
+		echo "<div class='row'>Aucun frais hort forfait enregistré pour cette fiche</div>";
 		exit;
 	} else {
 		include("vues/v_listeFraisHorsForfaitComptable.php");
