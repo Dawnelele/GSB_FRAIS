@@ -293,6 +293,15 @@ class PdoGsb{
 			fichefrais.montantValide as montantValide, Etat.libelle as libEtat from fichefrais inner join Etat on fichefrais.idEtat = Etat.id 
 			where fichefrais.idVisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		$res = PdoGsb::$monPdo->query($req);
+		$laLigne = $res->fetch();
+		return $laLigne;
+	}
+
+	public function getLesInfosFicheFraisObjet($idVisiteur,$mois){
+		$req = "select fichefrais.idEtat as idEtat, fichefrais.dateModif as dateModif, fichefrais.nbJustificatifs as nbJustificatifs, 
+			fichefrais.montantValide as montantValide, Etat.libelle as libEtat from fichefrais inner join Etat on fichefrais.idEtat = Etat.id 
+			where fichefrais.idVisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
+		$res = PdoGsb::$monPdo->query($req);
 		$res->setFetchMode(PDO::FETCH_OBJ);
 		$laLigne = $res->fetch();
 		return $laLigne;
