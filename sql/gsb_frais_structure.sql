@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `LigneFraisForfait` (
   `idFraisForfait` char(3) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVisiteur`,`mois`,`idFraisForfait`),
-  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES FicheFrais(`idVisiteur`, `mois`),
+  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES fichefrais(`idVisiteur`, `mois`),
   FOREIGN KEY (`idFraisForfait`) REFERENCES FraisForfait(`id`)
 ) ENGINE=InnoDB;
 
@@ -114,5 +114,5 @@ CREATE TABLE IF NOT EXISTS `LigneFraisHorsForfait` (
   `date` date DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES FicheFrais(`idVisiteur`, `mois`)
+  FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES fichefrais(`idVisiteur`, `mois`)
 ) ENGINE=InnoDB;
