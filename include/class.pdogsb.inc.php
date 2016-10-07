@@ -293,9 +293,20 @@ class PdoGsb{
 			fichefrais.montantValide as montantValide, Etat.libelle as libEtat from fichefrais inner join Etat on fichefrais.idEtat = Etat.id 
 			where fichefrais.idVisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
 		$res = PdoGsb::$monPdo->query($req);
-		var_dump($req);
+		$res->setFetchMode(PDO::FETCH_OBJ);
 		$laLigne = $res->fetch();
 		return $laLigne;
+	}
+
+	public function getLesEtats(){
+		$req = "select * from Etat";
+		$res = PdoGsb::$monPdo->query($req);
+		$res->setFetchMode(PDO::FETCH_OBJ);
+		while($ligne = $res->fetch())
+		{
+			$lesLignes[] = $ligne;
+		}
+		return $lesLignes;
 	}
 /**
  * Modifie l'état et la date de modification d'une fiche de frais
