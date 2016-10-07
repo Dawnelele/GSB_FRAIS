@@ -72,7 +72,8 @@ switch($action){
 
 		if(lesQteFraisValides($lesFrais)){
 	  	 	$pdo->majFraisForfait($idVisiteur,$mois,$lesFrais);
-	  	 	echo '<script>window.location.href = "index.php?uc=etatFrais&action=selectionnerMois";</script>';
+	  	 	//TODO NOTIF toastr confirmation
+	  	 	echo "<script>window.location.href = 'index.php?uc=gererFrais&action=saisirFrais';</script>";
 		}
 		else{
 			ajouterErreur("Les valeurs des frais doivent être numériques");
@@ -90,6 +91,7 @@ switch($action){
 		}
 		else{
 			$pdo->creeNouveauFraisHorsForfait($idVisiteur,$mois,$libelle,$dateFrais,$montant);
+			echo "<script>window.location.href = 'index.php?uc=gererFrais&action=saisirFrais';</script>";
 		}
 		break;
 	}
@@ -98,6 +100,8 @@ switch($action){
 	    $pdo->supprimerFraisHorsForfait($idFrais);
 	    if($isComptable) {
 	    	echo "<script>window.location.href = \"index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur=". $_REQUEST['requestedIdVisiteur'] ."&requestedMonth=". $_REQUEST['requestedMonth']. "\"</script>";
+	    } else {
+	    	echo "<script>window.location.href = 'index.php?uc=etatFrais&action=voirEtatFrais';</script>";
 	    }
 		break;
 	}
