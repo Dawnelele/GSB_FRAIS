@@ -1,6 +1,6 @@
 <?php
 
-if($_REQUEST['notFound'] == true) {
+if(isset($_REQUEST['notFound']) && $_REQUEST['notFound'] == "true") {
     echo '<script type=\'text/javascript\'>
     toastr.options = {
       "closeButton": false,
@@ -21,6 +21,8 @@ if($_REQUEST['notFound'] == true) {
   };
   toastr["error"]("Il n\'existe aucune fiche pour le mois sélectionné", "Erreur");
   </script>';
+} else {
+    echo "";
 }
 
 echo '<div class="hidden alert alert-danger" id="danger-alert">

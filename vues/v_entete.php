@@ -27,7 +27,7 @@
 
           <button type="button" class="btn btn-default navbar-btn"><a href="index.php?uc=connexion&action=accueil">Accueil</a></button>
           <?php echo ($_SESSION['isComptable'] == 1) ? "
-          <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\"><button type=\"button\" class=\"btn btn-default navbar-btn\">Afficher la liste des frais</button></a>
+          <a href=\"index.php?uc=gererFrais&action=listeFrais&notFound=false\" title=\"Afficher la liste des frais\"><button type=\"button\" class=\"btn btn-default navbar-btn\">Afficher la liste des frais</button></a>
           " : ""?>
 
           <?php echo ($_SESSION['isComptable'] == 1) ? "" : '
