@@ -1,3 +1,8 @@
+<?php
+if(empty($lesFraisForfait)) {
+	echo "<script>window.location.href = 'index.php?uc=gererFrais&action=listeFrais&notFound=true';</script>";
+}?>
+
 <div class="form-group">
 	<fieldset>
 		<legend>Eléments forfaitisés</legend>
