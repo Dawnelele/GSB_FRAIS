@@ -22,14 +22,17 @@ $listeMois = array(
                 date('Y') . "12" => "Décembre",
                 );
 
-echo '<div id="conteneurSelecteurs" >';
-echo '<select class="selecteurVisiteur chosen-select">';
+?>
+<fieldset>
+<legend>Choississez un visiteur puis un mois</legend>
+<div id="conteneurSelecteurs" >
+    <select class="selecteurVisiteur form-control"><?php
 foreach($visiteurs as $visiteur){
     echo '<option value="'. $visiteur['id'] .'">'. $visiteur['nom'] . ' ' . $visiteur['prenom'] . '</option>';
 }
-echo '</select>';
+echo '</select><br />';
 
-echo '<select class="hidden selecteurMois">';
+echo '<select class="hidden selecteurMois form-control">';
 foreach($listeMois as $idMois => $nomMois){
     echo '<option value="'. $idMois .'">'. $nomMois .'</option>';
 }

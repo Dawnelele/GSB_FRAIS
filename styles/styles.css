@@ -116,8 +116,7 @@ ul#menuList a:hover {
 
 #entete #logoGSB {
   float : left;
-  width : 238px;
-  height : 152px;
+  margin-top: 10px;
 }
 
 #entete h1 {

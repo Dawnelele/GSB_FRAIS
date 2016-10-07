@@ -13,14 +13,18 @@
   <link href="./styles/chosen.min.css" rel="stylesheet" type="text/css" />
   <link href="./styles/toastr.min.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
+
 </head>
 <body>
 <div class="container">
   <div id="entete" class="header clearfix">
-    <!--<img src="./images/logo.jpg" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />-->
-    <h3 class="text-muted">logo</h3>
+    <img width="75" height="50" src="./images/logo.jpg" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
+    
+    
+ 
+    
     <nav id="navbar" class="navbar navbar-static-top navbar-right">
-      
+
           <button type="button" class="btn btn-default navbar-btn"><a href="index.php?uc=connexion&action=accueil">Accueil</a></button>
           <?php echo ($_SESSION['isComptable'] == 1) ? "
           <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\"><button type=\"button\" class=\"btn btn-default navbar-btn\">Afficher la liste des frais</button></a>
@@ -33,5 +37,6 @@
 
         
     </nav>
+
   </div>
   <div class="container" id="content">

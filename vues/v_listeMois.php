@@ -1,13 +1,13 @@
-﻿ <div id="contenu">
+﻿ <div class="container">
       <h2>Mes fiches de frais</h2>
       <h3>Mois à sélectionner : </h3>
       <form action="index.php?uc=etatFrais&action=voirEtatFrais" method="post">
-      <div class="corpsForm">
+      <div class="corpsForm form-group">
          
       <p>
 	 
         <label for="lstMois" accesskey="n">Mois : </label>
-        <select id="lstMois" name="lstMois">
+        <select class="form-control" id="lstMois" name="lstMois">
             <?php
 			foreach ($lesMois as $unMois)
 			{
@@ -33,8 +33,7 @@
       </div>
       <div class="piedForm">
       <p>
-        <input id="ok" type="submit" value="Valider" size="20" />
-        <input id="annuler" type="reset" value="Effacer" size="20" />
+        <button type="submit" class="form-control btn btn-"></button>
       </p> 
       </div>
         
