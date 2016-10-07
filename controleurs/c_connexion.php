@@ -30,7 +30,6 @@ switch($action){
 	}
 	case 'accueil':{
 		if($_SESSION['idVisiteur']) {
-			include("vues/v_sommaire.php");
 			include("vues/v_accueil.php");
 		} else {
 			//TODO Use toastr to display error notification

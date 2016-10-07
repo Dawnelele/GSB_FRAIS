@@ -12,16 +12,38 @@ body{
   background-color:white;
   width : 65%;
   margin : auto ;
-  border : 0.2em solid black;
+  /*border : 0.2em solid black;*/
   padding : 0.1em;
 }
+#content {
+  margin-top:  72px;
+}
+#entete h3 {
+  display:  inline-block;
+}
+#navbar {
+  margin-left: 100px;
+  margin-right: 95px;
+  margin-top: 10px;
+  margin-bottom: 10px!important;
+}
 #entete{
-  background-color:rgb(72,198,236);
-	color : #980101;
-	border: solid 0.1em #980101;
-	height: 154px;
-	padding: 0em;
-	border-collapse: separate;
+  background-color: white;
+	/*color : #980101;
+	/*border: solid 0.1em #980101;
+	height: 154px;*/
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 15px;
+  position: fixed;
+  top: 0px;
+  display: inline-block;
+  min-width: 730px;
+	/*border-collapse: separate;*/
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px!important;
+  }
 }
 #pied{
   clear : both;
@@ -39,6 +61,9 @@ body{
 	color: rgb(0,85,227);
 	float: left;
 	width: 14%;
+
+  position: sticky;
+  top: 20px;
 }
 
 #contenu{
@@ -96,9 +121,9 @@ ul#menuList a:hover {
 }
 
 #entete h1 {
-  margin : 1em;
+  /*margin : 1em;
   margin-left:6em;
-  font-size : x-large;
+  font-size : x-large;*/
   text-align:center;
 }
 
@@ -158,12 +183,12 @@ input, button, textarea, select{
   font-family:"Trebuchet MS", sans-serif;
   font-size : 1em;
 }
-button{
+/*button{
   width : 60px;
   height : 30px;
   text-align:center;
   vertical-align:middle;
-}
+}*/
 input:hover, textarea:hover, select:hover{
   /*background-color : #FAFAE6;
   cursor : text;*/
