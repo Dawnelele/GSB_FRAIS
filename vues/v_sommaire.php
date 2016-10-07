@@ -12,7 +12,9 @@
 				  <?php echo ($_SESSION['isComptable'] == 1) ? "Comptable :" : "Visiteur :" ?><br>
 				<?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>
 			</li>
-
+            <li class="smenu">
+              <a href="index.php?uc=connexion&action=accueil">Accueil</a>
+            </li>
             <?php echo ($_SESSION['isComptable'] == 1) ? "<li class=\"smenu\">
               <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\">Afficher la liste des frais</a>
            </li>" : ""?>

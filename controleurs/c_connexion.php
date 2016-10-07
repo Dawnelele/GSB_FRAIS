@@ -5,6 +5,7 @@ if(!isset($_REQUEST['action'])){
 $action = $_REQUEST['action'];
 switch($action){
 	case 'demandeConnexion':{
+		include("vues/v_erreurs.php");
 		include("vues/v_connexion.php");
 		break;
 	}
@@ -23,9 +24,24 @@ switch($action){
             $prenom = $visiteur['prenom'];
             $isComptable = $visiteur['isComptable'];
             connecter($id, $nom, $prenom, $isComptable);
-            include("vues/v_sommaire.php");
+            echo "<script>window.location.href = 'index.php?uc=connexion&action=accueil';</script>";
         }
         break;
+	}
+	case 'accueil':{
+		if($_SESSION['idVisiteur']) {
+			include("vues/v_sommaire.php");
+			include("vues/v_accueil.php");
+		} else {
+			//TODO Use toastr to display error notification
+			echo "<script>window.location.href = 'index.php?uc=connexion&action=demandeConnexion';</script>";
+		}
+		break;
+	}
+	case 'deconnecter':{
+		session_destroy();
+		echo "<script>window.location.href = 'index.php?uc=connexion&action=demandeConnexion';</script>";
+		break;
 	}
 	default :{
 		include("vues/v_connexion.php");
