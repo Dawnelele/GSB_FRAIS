@@ -15,30 +15,36 @@
                     $date = $unFraisHorsForfait['date'];
                     $montant=$unFraisHorsForfait['montant'];
                     $id = $unFraisHorsForfait['id'];
-                    ?><tr>
+                    ?><tr id="<?php echo $id; ?>">
                         <td> <?php echo $date ?></td>
                         <td><?php echo $libelle ?></td>
                         <td><?php echo $montant ?></td>
                         <td>
-                        <select class="selecteurEtat">
-                        <?php foreach($lesEtats as $etat)
-                        {
-                            echo "<option value=". $etat->id .">". $etat->libelle ."</option>";
-                                
-                        }?>
-                        </select>
-                        <a href="<?php echo "index.php?uc=gererFrais&action=supprimerFrais&requestedIdVisiteur=". $_REQUEST['requestedIdVisiteur'] ."&requestedMonth=". $_REQUEST['requestedMonth'] ."&idFrais=$id "; ?>" 
-                        onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                            <a class="btn btn-danger" href="<?php echo "index.php?uc=gererFrais&action=supprimerFrais&requestedIdVisiteur=". $_REQUEST['requestedIdVisiteur'] ."&requestedMonth=". $_REQUEST['requestedMonth'] ."&idFrais=$id "; ?>" 
+                        onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Refuser cet élément</a></td>
                     </tr>
                     <?php
                 }
             ?>    
 </table>
+<select class="selecteurEtat">
+<?php 
+foreach($lesEtats as $etat) {
+    if($etatActuel->idEtat != $etat->id) {
+            echo "<option label=". $id ." value=". $etat->id .">". $etat->libelle ."</option>";
+        } else {
+            echo "<option selected label=". $id ." value=". $etat->id .">". $etat->libelle ."</option>";
+        }
+}
+?></select>
 
 <script>
 //PROJET AUTOSELECT VALUE
 $(document).ready(function() {
-    $(".selecteurEtat option[value='B']").attr("selected","selected");
+    //$(".selecteurEtat option[value='<?php echo $etatActuel->idEtat ?>']").attr("selected", "");
+    var idVisiteurCurrentRow = $(".selecteurEtat option").closest('tr').attr('id');
+    //$(".selecteurEtat option[value='<?php echo $etatActuel->idEtat; ?>'][label='"+idVisiteurCurrentRow+"']").attr("selected", "");
+    //$(".selecteurEtat option[value='<?php echo $etatActuel->idEtat; ?>']").attr("selected", "");
 })
 
 $(".selecteurEtat").on("change", function() {
@@ -49,8 +55,9 @@ $(".selecteurEtat").on("change", function() {
         url: 'index.php?uc=gererFrais&action=changerEtat&requestedIdVisiteur='+requestedIdVisiteur+'&requestedMonth='+requestedMonth+'&idNouvelEtat='+idNouvelEtat,
         type: 'post',
         complete: function() {
-            alert('complete');
+            window.location.href="index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur="+requestedIdVisiteur+"&requestedMonth="+requestedMonth;
         },
     })
+    
 })
 </script>

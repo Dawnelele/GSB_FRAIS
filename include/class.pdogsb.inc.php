@@ -297,6 +297,7 @@ class PdoGsb{
 		return $laLigne;
 	}
 
+
 	public function getLesInfosFicheFraisObjet($idVisiteur,$mois){
 		$req = "select fichefrais.idEtat as idEtat, fichefrais.dateModif as dateModif, fichefrais.nbJustificatifs as nbJustificatifs, 
 			fichefrais.montantValide as montantValide, Etat.libelle as libEtat from fichefrais inner join Etat on fichefrais.idEtat = Etat.id 
@@ -316,6 +317,11 @@ class PdoGsb{
 			$lesLignes[] = $ligne;
 		}
 		return $lesLignes;
+	}
+
+	public function updateMontantValide($idVisiteur, $mois, $montantAAjouter) {
+		$req = "update fichefrais set montantValide = '$montantAAjouter' where fichefrais.idVisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
+		PdoGsb::$monPdo->exec($req);
 	}
 /**
  * Modifie l'état et la date de modification d'une fiche de frais

@@ -10,6 +10,10 @@ $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
 $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);
 $action = $_REQUEST['action'];
 switch($action){
+	case 'validerFiche': {
+		$lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
+
+	}
 	case 'modifierFiche': {
 		$lesFraisForfait= $pdo->getLesFraisForfait($_REQUEST['idVisiteurToUpdate'], $_REQUEST['moisToUpdate']);
 		include("vues/v_listeFraisForfait.php");
@@ -18,6 +22,11 @@ switch($action){
 	case 'changerEtat': {
 		$idNouvelEtat = $_REQUEST['idNouvelEtat'];
 		$res = $pdo->majEtatFicheFrais($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth'], $idNouvelEtat);
+
+		if($idNouvelEtat == "VA") {
+			$infos = $pdo->getLesFraisHorsForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
+			$pdo->updateMontantValide($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth'], $infos[0]['montant']);
+		}
 		break;
 	}
 	case 'consulterFrais':{
@@ -25,6 +34,7 @@ switch($action){
 			$lesEtats = $pdo->getLesEtats();
 			$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
 			$lesFraisForfait= $pdo->getLesFraisForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
+			$etatActuel = $pdo->getLesInfosFicheFraisObjet($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
 			include("vues/v_consulterFiche.php");
 		} else {
 			ajouterErreur("Vous n'avez pas accès à cette page");
@@ -73,7 +83,7 @@ switch($action){
 		if(lesQteFraisValides($lesFrais)){
 	  	 	$pdo->majFraisForfait($idVisiteur,$mois,$lesFrais);
 	  	 	//TODO NOTIF toastr confirmation
-	  	 	echo "<script>window.location.href = 'index.php?uc=gererFrais&action=saisirFrais';</script>";
+	  	 	echo "<script>window.location.href = \"index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur=". $_REQUEST['idVisiteurToUpdate'] ."&requestedMonth=". $_REQUEST['moisToUpdate']. "\"</script>";
 		}
 		else{
 			ajouterErreur("Les valeurs des frais doivent être numériques");
