@@ -1,5 +1,4 @@
 <?php
-include("vues/v_sommaire.php");
 $idVisiteur = $_SESSION['idVisiteur'];
 $isComptable = $_SESSION['isComptable'];
 $mois = getMois(date("d/m/Y"));
@@ -25,7 +24,12 @@ switch($action){
 
 		if($idNouvelEtat == "VA") {
 			$infos = $pdo->getLesFraisHorsForfait($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth']);
-			$pdo->updateMontantValide($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth'], $infos[0]['montant']);
+			$montantAAjouter = 0;
+
+			foreach ($infos as $key) {
+				$montantAAjouter += $key['montant'];
+			}
+			$pdo->updateMontantValide($_REQUEST['requestedIdVisiteur'], $_REQUEST['requestedMonth'], $montantAAjouter);
 		}
 		break;
 	}
