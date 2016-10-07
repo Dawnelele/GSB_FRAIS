@@ -14,7 +14,7 @@ switch($action){
 		break;
 	}
 	case 'voirEtatFrais':{
-		$leMois = $_REQUEST['lstMois']; 
+		$leMois = (isset($_REQUEST['lstMois']) && !empty($_REQUEST['lstMois'])) ? $_REQUEST['lstMois'] : $_SESSION['lstMois'];
 		$lesMois=$pdo->getLesMoisDisponibles($idVisiteur);
 		$moisASelectionner = $leMois;
 		include("vues/v_listeMois.php");
@@ -29,6 +29,8 @@ switch($action){
 		$dateModif =  $lesInfosFicheFrais['dateModif'];
 		$dateModif =  dateAnglaisVersFrancais($dateModif);
 		include("vues/v_etatFrais.php");
+		break;
 	}
+	
 }
 ?>
