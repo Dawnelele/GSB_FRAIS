@@ -61,20 +61,10 @@ class PdoGsb{
 		return $ligne;
 	}
 
-	public function getInfosComptable($login, $mdp){
-		$req = "select Comptable.id as id, Comptable.nom as nom, Comptable.prenom as prenom from Comptable
-        where Comptable.login='$login' and Comptable.mdp='$mdp'";
-        $rs = PdoGsb::$monPdo->query($req);
-        $ligne = $rs->fetch();
-        return $ligne;
-	}
-
-    public function getListeFrais(){
-        $req = "select * from LigneFraisForfait, LigneFraisHorsForfait";
-        $rs = PdoGsb::$monPdo->query($req);
-        $ligne = $rs->fetchAll();
-        return $ligne;
-    }
+/**
+ * Retourne tous les visiteurs existants dans la table Visiteurs
+ * @return [Un tableau contenant un tableau pour chaque visiteur, contenant lui même une association clé => valeur pour chaque champ de la table]
+ */
 
     public function getLesVisiteurs(){
         $req = "select * from Visiteur";
