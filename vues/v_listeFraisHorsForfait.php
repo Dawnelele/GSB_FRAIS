@@ -10,7 +10,7 @@
              </tr>
           
     <?php    
-	    foreach( $lesFraisHorsForfait as $unFraisHorsForfait) 
+	    foreach($lesFraisHorsForfait as $unFraisHorsForfait) 
 		{
 			$libelle = $unFraisHorsForfait['libelle'];
 			$date = $unFraisHorsForfait['date'];

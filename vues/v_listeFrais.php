@@ -71,7 +71,10 @@ $('.selecteurMois').on("change", function() {
         },
         error: function() {
             window.location.href = "index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur="+requestedIdVisiteur+"&requestedMonth="+requestedMonth;
-        }
+        },
+        complete: function() {
+            window.location.href = "index.php?uc=gererFrais&action=consulterFrais&requestedIdVisiteur="+requestedIdVisiteur+"&requestedMonth="+requestedMonth;
+        },
     })
 })
 </script>
