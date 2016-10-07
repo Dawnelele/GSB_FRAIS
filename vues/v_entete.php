@@ -21,10 +21,6 @@
     <h3 class="text-muted">logo</h3>
     <nav id="navbar" class="navbar navbar-static-top navbar-right">
       
-
-          <!--<?php echo ($_SESSION['isComptable'] == 1) ? "Comptable :" : "Visiteur :" ?><br>
-          <?php echo $_SESSION['prenom']."  ".$_SESSION['nom']  ?>-->
-
           <button type="button" class="btn btn-default navbar-btn"><a href="index.php?uc=connexion&action=accueil">Accueil</a></button>
           <?php echo ($_SESSION['isComptable'] == 1) ? "
           <a href=\"index.php?uc=gererFrais&action=listeFrais\" title=\"Afficher la liste des frais\"><button type=\"button\" class=\"btn btn-default navbar-btn\">Afficher la liste des frais</button></a>
