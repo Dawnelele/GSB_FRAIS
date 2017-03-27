@@ -26,14 +26,14 @@
     <nav id="navbar" class="navbar navbar-static-top navbar-right">
 
           <button type="button" class="btn btn-default navbar-btn"><a href="index.php?uc=connexion&action=accueil">Accueil</a></button>
-          <?php echo ($_SESSION['isComptable'] == 1) ? "
+          <?php echo (isset($_SESSION['isComptable']) && $_SESSION['isComptable'] == 1) ? "
           <a href=\"index.php?uc=gererFrais&action=listeFrais&notFound=false\" title=\"Afficher la liste des frais\"><button type=\"button\" class=\"btn btn-default navbar-btn\">Afficher la liste des frais</button></a>
           " : ""?>
 
-          <?php echo ($_SESSION['isComptable'] == 1) ? "" : '
+          <?php echo (isset($_SESSION['isComptable']) && $_SESSION['isComptable'] == 1) ? "" : '
           <a href="index.php?uc=gererFrais&action=saisirFrais" title="Saisie fiche de frais"><button type="button" class="btn btn-default navbar-btn">Saisie fiche de frais</button></a>
           <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Consultation de mes fiches de frais"><button type="button" class="btn btn-default navbar-btn">Mes fiches de frais</button></a>'; ?>           
-          <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter"><button type="button" class="btn btn-default navbar-btn">Déconnexion</button></a>
+          <a href="index.php" title="Se déconnecter"><button type="button" class="btn btn-default navbar-btn">Déconnexion</button></a>
 
         
     </nav>

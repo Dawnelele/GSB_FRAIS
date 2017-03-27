@@ -2,8 +2,8 @@
 $idVisiteur = $_SESSION['idVisiteur'];
 $isComptable = $_SESSION['isComptable'];
 $mois = getMois(date("d/m/Y"));
-$numAnnee =substr( $mois,0,4);
-$numMois =substr( $mois,4,2);
+$numAnnee = substr($mois, 0, 4);
+$numMois = substr($mois, 4, 2);
 
 $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur,$mois);
 $lesFraisForfait= $pdo->getLesFraisForfait($idVisiteur,$mois);

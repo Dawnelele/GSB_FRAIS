@@ -7,9 +7,11 @@ $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte){
      $_REQUEST['uc'] = 'connexion';
 }
-
-include("vues/v_entete.php") ;
-
+if (!empty($_REQUEST['action'])) {
+	include("vues/v_entete.php");
+}
+/*if (isset($_REQUEST['action'])) {
+}*/
 
 $uc = $_REQUEST['uc'];
 switch($uc){
