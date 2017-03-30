@@ -18,8 +18,8 @@
 class PdoGsb{   		
       	private static $serveur='mysql:host=localhost';
       	private static $bdd='dbname=gsbV2';
-      	private static $user='root' ;    		
-      	private static $mdp='root' ;	
+      	private static $user='root';
+      	private static $mdp='root';
 		private static $monPdo;
 		private static $monPdoGsb=null;
 /**
@@ -56,6 +56,19 @@ class PdoGsb{
 	public function getInfosVisiteur($login, $mdp){
 		$req = "select Visiteur.id as id, Visiteur.nom as nom, Visiteur.prenom as prenom, Visiteur.isComptable as isComptable from Visiteur
 		where Visiteur.login='$login' and Visiteur.mdp='$mdp'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetch();
+		return $ligne;
+	}
+
+	/**
+	 * Retourne les informations du visiteur
+	 * @param  [string] $id  L'id visiteur
+	 * @return [array]     Un tableau contenant les informations du visiteur
+	 */
+	public function getVisiteurName($id){
+		$req = "select * from Visiteur
+		where Visiteur.id='$id'";
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;

@@ -39,7 +39,7 @@ switch($action){
 	}
 	case 'deconnecter':{
 		session_destroy();
-		echo "<script>window.location.href = 'index.php?uc=connexion&action=demandeConnexion';</script>";
+		echo "<script>window.location.href = 'index.php';</script>";
 		break;
 	}
 	default :{

@@ -7,9 +7,11 @@ $estConnecte = estConnecte();
 if(!isset($_REQUEST['uc']) || !$estConnecte){
      $_REQUEST['uc'] = 'connexion';
 }
-
-include("vues/v_entete.php") ;
-
+if (!empty($_REQUEST['action'])) {
+	include("vues/v_entete.php");
+}
+/*if (isset($_REQUEST['action'])) {
+}*/
 
 $uc = $_REQUEST['uc'];
 switch($uc){
@@ -21,6 +23,10 @@ switch($uc){
 	}
 	case 'etatFrais' :{
 		include("controleurs/c_etatFrais.php");break; 
+	}
+	case 'dashboard' :{
+		include("controleurs/c_dashboard.php");
+		break;
 	}
 }
 include("vues/v_pied.php") ;
